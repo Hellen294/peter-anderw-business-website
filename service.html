@@ -1,0 +1,75 @@
+<!-- Example service detail page template -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Service Details</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 2em;
+      background: #f4f4f4;
+    }
+    .content {
+      background: white;
+      padding: 2em;
+      border-radius: 10px;
+      max-width: 800px;
+      margin: auto;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease;
+    }
+    h1 { color: #2c3e50; }
+    p { line-height: 1.6; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="content" id="serviceDetail">
+    <h1>Loading...</h1>
+    <p>Please wait while we load the service details.</p>
+  </div>
+
+  <script>
+    const serviceDescriptions = {
+      "Web Design": "Professional web design tailored to your brand, optimized for performance and aesthetics. Essential for making a strong online presence.",
+      "App Development": "Build powerful and scalable mobile or desktop apps. Stay connected with your audience through seamless experiences.",
+      "SEO Optimization": "Improve your website's visibility in search engines and attract more organic traffic with expert SEO strategies.",
+      "Tech Support": "Reliable tech support to resolve any issues promptly. Peace of mind for you and your clients.",
+      "E-commerce Integration": "Boost sales by adding a full-featured online store to your website with secure payment systems.",
+      "Social Media Management": "Grow your audience and engagement with smart scheduling, analytics, and content creation.",
+      "Email Marketing": "Increase conversions through compelling and targeted email campaigns tailored to your audience.",
+      "UI/UX Design": "Craft user experiences that are both intuitive and delightful. User satisfaction starts here.",
+      "Cloud Solutions": "Store and access data securely with scalable and flexible cloud technology.",
+      "Cybersecurity Services": "Protect your digital assets with top-notch security services including audits, firewalls, and more.",
+      "Custom Software": "Get tailor-made software solutions that solve your specific business challenges.",
+      "System Maintenance": "Ensure your systems run smoothly with regular updates and monitoring.",
+      "Data Analytics": "Make informed decisions through powerful data insights and predictive analytics.",
+      "Automation Solutions": "Streamline operations and reduce manual work with intelligent automation tools.",
+      "Content Creation": "Engaging content that resonates with your audience, crafted to boost traffic and interest."
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const serviceName = params.get("name");
+
+    const contentDiv = document.getElementById("serviceDetail");
+
+    if (serviceDescriptions[serviceName]) {
+      contentDiv.innerHTML = `
+        <h1>${serviceName}</h1>
+        <p>${serviceDescriptions[serviceName]}</p>
+      `;
+    } else {
+      contentDiv.innerHTML = `
+        <h1>Service Not Found</h1>
+        <p>We couldn't find details for the requested service.</p>
+      `;
+    }
+  </script>
+</body>
+</html>
