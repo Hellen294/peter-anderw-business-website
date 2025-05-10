@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peter Andrew - Digital Solutions & Web Development</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    header { background-color: #2c3e50; color: white; padding: 1em 2em; text-align: center; }
+    nav { background-color: #34495e; display: flex; justify-content: center; padding: 0.5em; }
+    nav a { color: white; margin: 0 1em; text-decoration: none; }
+    .container { padding: 2em; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1em; }
+    .card { border: 1px solid #ccc; padding: 1em; text-align: center; cursor: pointer; border-radius: 8px; transition: box-shadow 0.3s; }
+    .card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
+    .modal-content { background: white; padding: 2em; border-radius: 8px; width: 90%; max-width: 500px; }
+    .close { float: right; cursor: pointer; font-size: 1.2em; }
+    form input, form textarea { width: 100%; margin-bottom: 1em; padding: 0.5em; }
+    form button { background-color: #2c3e50; color: white; padding: 0.5em 1em; border: none; border-radius: 4px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Peter Andrew</h1>
+    <p>Digital Solutions & Web Development - Solving All Digital Related Issues</p>
+  </header>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="container" id="services">
+    <div class="card" onclick="openModal('Web Design')">Web Design</div>
+    <div class="card" onclick="openModal('App Development')">App Development</div>
+    <div class="card" onclick="openModal('SEO Optimization')">SEO Optimization</div>
+    <div class="card" onclick="openModal('UI/UX Design')">UI/UX Design</div>
+    <div class="card" onclick="openModal('Digital Marketing')">Digital Marketing</div>
+    <div class="card" onclick="openModal('Tech Support')">Tech Support</div>
+    <div class="card" onclick="openModal('Hosting Services')">Hosting Services</div>
+    <div class="card" onclick="openModal('E-Commerce Solutions')">E-Commerce Solutions</div>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <p>Thank you for your interest in our service. Please fill out the form below and we’ll get back to you.</p>
+      <form id="subscriptionForm">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Subscribe</button>
+      </form>
+      <p id="formResponse" style="color: green;"></p>
+    </div>
+  </div>
+
+  <script>
+    function openModal(service) {
+      document.getElementById('modalTitle').innerText = service;
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+      document.getElementById('formResponse').innerText = '';
+    }
+
+    document.getElementById('subscriptionForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const message = formData.get('message');
+
+      fetch('https://formsubmit.co/ajax/pa4995355@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({ name, email, message })
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('formResponse').innerText = 'Message sent successfully!';
+        document.getElementById('subscriptionForm').reset();
+      })
+      .catch(error => {
+        document.getElementById('formResponse').innerText = 'An error occurred. Please try again later.';
+        console.error('Error:', error);
+      });
+    });
+  </script>
+</body>
+</html>
