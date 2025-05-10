@@ -4,25 +4,118 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Peter Andrew - Digital Solutions & Web Development</title>
+  <meta name="description" content="Professional digital solutions and web development by Peter Andrew. Expert in web design, app development, SEO, and tech support." />
+  <meta name="keywords" content="Digital Solutions, Web Development, SEO, Web Design, App Development, Tech Support, Peter Andrew" />
+  <meta name="author" content="Peter Andrew" />
+  <meta property="og:title" content="Peter Andrew - Digital Solutions & Web Development">
+  <meta property="og:description" content="Peter Andrew provides professional digital services including web design, SEO, app development, and tech support." />
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourwebsite.com">
+  <meta property="og:image" content="https://via.placeholder.com/400x200?text=Web+Design">
+  <link rel="canonical" href="https://yourwebsite.com">
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-    header { background-color: #2c3e50; color: white; padding: 1em 2em; text-align: center; }
-    nav { background-color: #34495e; display: flex; justify-content: center; padding: 0.5em; }
-    nav a { color: white; margin: 0 1em; text-decoration: none; }
-    .container { padding: 2em; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1em; }
-    .card { border: 1px solid #ccc; padding: 1em; text-align: center; cursor: pointer; border-radius: 8px; transition: box-shadow 0.3s; }
-    .card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
-    .modal-content { background: white; padding: 2em; border-radius: 8px; width: 90%; max-width: 500px; }
-    .close { float: right; cursor: pointer; font-size: 1.2em; }
-    form input, form textarea { width: 100%; margin-bottom: 1em; padding: 0.5em; }
-    form button { background-color: #2c3e50; color: white; padding: 0.5em 1em; border: none; border-radius: 4px; cursor: pointer; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f4f4f4; }
+    header {
+      background: linear-gradient(to right, #2c3e50, #3498db);
+      color: white;
+      padding: 2em;
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #1abc9c;
+      padding: 1em;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1em;
+      font-weight: bold;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1em;
+      padding: 2em;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      cursor: pointer;
+      transition: transform 0.5s ease;
+      position: relative;
+    }
+    .card:hover {
+      transform: rotateY(10deg) scale(1.05);
+    }
+    .card img, .card video {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      pointer-events: none;
+      user-select: none;
+    }
+    .card h3 {
+      padding: 1em;
+      background: #ecf0f1;
+      margin: 0;
+      text-align: center;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+    .modal-content {
+      background: white;
+      padding: 2em;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 600px;
+      animation: scaleIn 0.5s ease;
+    }
+    .close { float: right; cursor: pointer; font-size: 1.5em; }
+    form input, form textarea {
+      width: 100%;
+      margin-bottom: 1em;
+      padding: 0.7em;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    form button {
+      padding: 0.7em 1.5em;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scaleIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>Peter Andrew</h1>
-    <p>Digital Solutions & Web Development - Solving All Digital Related Issues</p>
+    <p>Digital Solutions & Web Development</p>
   </header>
   <nav>
     <a href="#services">Services</a>
@@ -30,36 +123,43 @@
   </nav>
 
   <div class="container" id="services">
-    <div class="card" onclick="openModal('Web Design')">Web Design</div>
-    <div class="card" onclick="openModal('App Development')">App Development</div>
-    <div class="card" onclick="openModal('SEO Optimization')">SEO Optimization</div>
-    <div class="card" onclick="openModal('UI/UX Design')">UI/UX Design</div>
-    <div class="card" onclick="openModal('Digital Marketing')">Digital Marketing</div>
-    <div class="card" onclick="openModal('Tech Support')">Tech Support</div>
-    <div class="card" onclick="openModal('Hosting Services')">Hosting Services</div>
-    <div class="card" onclick="openModal('E-Commerce Solutions')">E-Commerce Solutions</div>
+    <script>
+      const services = [
+        'Web Design', 'App Development', 'SEO Optimization', 'Tech Support',
+        'E-commerce Integration', 'Social Media Management', 'Email Marketing', 'UI/UX Design',
+        'Cloud Solutions', 'Cybersecurity Services', 'Custom Software', 'System Maintenance',
+        'Data Analytics', 'Automation Solutions', 'Content Creation'
+      ];
+
+      const thumbnails = services.map((service, index) => {
+        const isVideo = index % 4 === 1;
+        const media = isVideo
+          ? `<video src="https://www.w3schools.com/html/mov_bbb.mp4" autoplay muted loop playsinline></video>`
+          : `<img src="https://via.placeholder.com/400x200/" alt="${service}" />`;
+        return `<div class="card" onclick="location.href='service.html?name=${encodeURIComponent(service)}'">${media}<h3>${service}</h3></div>`;
+      }).join('');
+
+      document.write(thumbnails);
+    </script>
   </div>
 
   <div class="modal" id="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
       <h2 id="modalTitle"></h2>
-      <p>Thank you for your interest in our service. Please fill out the form below and we’ll get back to you.</p>
+      <p>Please fill in the form below to get started:</p>
       <form id="subscriptionForm">
         <input type="text" name="name" placeholder="Your Name" required />
         <input type="email" name="email" placeholder="Your Email" required />
         <textarea name="message" placeholder="Your Message" required></textarea>
-        <button type="submit">Subscribe</button>
+        <button type="submit">Send</button>
       </form>
-      <p id="formResponse" style="color: green;"></p>
+      <p id="formResponse"></p>
     </div>
   </div>
 
   <script>
-    function openModal(service) {
-      document.getElementById('modalTitle').innerText = service;
-      document.getElementById('modal').style.display = 'flex';
-    }
+    emailjs.init("YOUR_PUBLIC_KEY");
 
     function closeModal() {
       document.getElementById('modal').style.display = 'none';
@@ -69,28 +169,24 @@
     document.getElementById('subscriptionForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
-      const formData = new FormData(this);
-      const name = formData.get('name');
-      const email = formData.get('email');
-      const message = formData.get('message');
-
-      fetch('https://formsubmit.co/ajax/pa4995355@gmail.com', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({ name, email, message })
+      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+        name: this.name.value,
+        email: this.email.value,
+        message: this.message.value
       })
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById('formResponse').innerText = 'Message sent successfully!';
+      .then(function() {
+        document.getElementById('formResponse').innerText = "Message sent successfully!";
         document.getElementById('subscriptionForm').reset();
-      })
-      .catch(error => {
-        document.getElementById('formResponse').innerText = 'An error occurred. Please try again later.';
-        console.error('Error:', error);
+      }, function(error) {
+        document.getElementById('formResponse').innerText = "Failed to send. Please try again.";
+        console.error(error);
       });
+    });
+
+    document.addEventListener('contextmenu', function(e) {
+      if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO') {
+        e.preventDefault();
+      }
     });
   </script>
 </body>
