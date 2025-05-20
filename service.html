@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Our Services</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Google Fonts: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
   <style>
+    /* Root colors */
     :root {
       --primary: #2c3e50;
       --secondary: #3498db;
@@ -15,20 +19,26 @@
       --text: #34495e;
     }
 
+    /* Basic reset & body styles */
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 0;
       background: var(--bg);
       color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     .container {
       max-width: 1200px;
       margin: auto;
       padding: 2rem;
+      flex-grow: 1;
     }
 
+    /* Header styles */
     header.site-header {
       background: var(--primary);
       color: #fff;
@@ -58,34 +68,42 @@
       color: var(--accent);
     }
 
+    /* Title */
     h1#serviceTitle {
       font-size: 2.5rem;
       color: var(--primary);
       margin-top: 1rem;
+      text-align: center;
     }
 
     h2, h3 {
       color: var(--primary);
       margin-top: 2rem;
+      font-weight: 600;
     }
 
     p, ul {
       font-size: 1rem;
+      line-height: 1.5;
     }
 
+    /* How we help section */
     #howWeHelpSection {
       background: var(--light);
       padding: 1rem;
       border-left: 4px solid var(--secondary);
       border-radius: 8px;
+      margin-top: 0.5rem;
     }
 
+    /* Skills list */
     ul#skillsList {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
       padding-left: 0;
       list-style: none;
+      margin-top: 0.5rem;
     }
 
     ul#skillsList li {
@@ -96,6 +114,7 @@
       font-size: 0.9rem;
     }
 
+    /* Image gallery grid */
     #imageGallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -108,12 +127,14 @@
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       transition: transform 0.3s;
+      cursor: pointer;
     }
 
     #imageGallery img:hover {
       transform: scale(1.03);
     }
 
+    /* Toggle form button */
     #toggleFormBtn {
       background: var(--secondary);
       color: white;
@@ -123,8 +144,17 @@
       border-radius: 6px;
       margin-top: 2rem;
       cursor: pointer;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      transition: background-color 0.3s ease;
     }
 
+    #toggleFormBtn:hover {
+      background: var(--accent);
+    }
+
+    /* Form container */
     #formContainer {
       display: none;
       background: white;
@@ -132,6 +162,16 @@
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       margin-top: 1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Form fields */
+    #subscriptionForm label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.3rem;
     }
 
     #subscriptionForm input,
@@ -141,8 +181,11 @@
       margin-bottom: 1rem;
       border-radius: 5px;
       border: 1px solid #ccc;
+      font-size: 1rem;
+      font-family: inherit;
     }
 
+    /* Submit button */
     #subscriptionForm button {
       background: var(--accent);
       color: white;
@@ -151,12 +194,21 @@
       font-size: 1rem;
       border-radius: 5px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     #subscriptionForm button:hover {
       background: #219150;
     }
 
+    /* Form response message */
+    #formResponse {
+      margin-top: 1rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* Footer */
     .site-footer {
       background: var(--primary);
       color: #ecf0f1;
@@ -165,6 +217,7 @@
       margin-top: 2rem;
     }
 
+    /* Responsive nav on small screens */
     @media (max-width: 768px) {
       .header-container {
         flex-direction: column;
@@ -174,11 +227,14 @@
       nav.nav a {
         display: block;
         margin: 0.5rem 0;
+        margin-left: 0;
       }
     }
   </style>
 </head>
 <body>
+
+  <!-- Header with nav -->
   <header class="site-header">
     <div class="container header-container">
       <nav class="nav">
@@ -190,14 +246,16 @@
     </div>
   </header>
 
+  <!-- Main content -->
   <main class="container">
     <h1 id="serviceTitle">Service Title</h1>
+
     <section id="service-info">
       <h2>Description</h2>
       <p id="serviceDescription">Loading service description...</p>
 
       <h3>How We Can Help You</h3>
-      <p id="howWeHelpSection">Loading how we help text...</p>
+      <div id="howWeHelpSection">Loading how we help text...</div>
 
       <h3>Our Expertise</h3>
       <ul id="skillsList"></ul>
@@ -207,13 +265,14 @@
     </section>
 
     <button id="toggleFormBtn">Show Contact / Subscribe Form</button>
+
     <div id="formContainer">
       <form id="subscriptionForm">
         <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name" required />
 
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="email" required />
 
         <label for="message">Message</label>
         <textarea id="message" name="message" rows="4" required></textarea>
@@ -228,8 +287,11 @@
     <p>&copy; 2025 MyService. All rights reserved.</p>
   </footer>
 
+  <!-- EmailJS library -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
   <script>
+    // Initialize EmailJS with your public user ID
     emailjs.init("9gydduA26qP4Do9xm");
 
     const serviceData = {
@@ -398,89 +460,91 @@
 
     };
 
-    function getServiceFromURL() {
-      const params = new URLSearchParams(window.location.search);
-      return params.get("service") || "";
-    }
 
-    function populateServiceDetails(serviceName) {
-      const data = serviceData[serviceName];
-      const titleEl = document.getElementById("serviceTitle");
-      const descEl = document.getElementById("serviceDescription");
-      const helpEl = document.getElementById("howWeHelpSection");
-      const skillsEl = document.getElementById("skillsList");
-      const galleryEl = document.getElementById("imageGallery");
+    // Choose which service to display by default:
+    const currentService = "Web Design";
 
+    // Cache DOM elements
+    const serviceTitle = document.getElementById("serviceTitle");
+    const serviceDescription = document.getElementById("serviceDescription");
+    const howWeHelpSection = document.getElementById("howWeHelpSection");
+    const skillsList = document.getElementById("skillsList");
+    const imageGallery = document.getElementById("imageGallery");
+    const toggleFormBtn = document.getElementById("toggleFormBtn");
+    const formContainer = document.getElementById("formContainer");
+    const subscriptionForm = document.getElementById("subscriptionForm");
+    const formResponse = document.getElementById("formResponse");
+
+    // Function to load service data dynamically
+    function loadService(name) {
+      const data = serviceData[name];
       if (!data) {
-        titleEl.textContent = "Service Not Found";
-        descEl.textContent = "Sorry, we don't have details for this service.";
-        helpEl.textContent = "";
-        skillsEl.innerHTML = "";
-        galleryEl.innerHTML = "";
+        console.warn(`Service "${name}" not found`);
         return;
       }
 
-      titleEl.textContent = serviceName;
-      descEl.textContent = data.description;
-      helpEl.textContent = data.howWeHelp;
+      serviceTitle.textContent = name;
+      serviceDescription.textContent = data.description;
+      howWeHelpSection.textContent = data.howWeHelp;
 
-      skillsEl.innerHTML = "";
+      // Load skills
+      skillsList.innerHTML = "";
       data.skills.forEach(skill => {
         const li = document.createElement("li");
         li.textContent = skill;
-        skillsEl.appendChild(li);
+        skillsList.appendChild(li);
       });
 
-      galleryEl.innerHTML = "";
+      // Load images
+      imageGallery.innerHTML = "";
       data.images.forEach(src => {
         const img = document.createElement("img");
         img.src = src;
-        img.alt = `${serviceName} related image`;
-        galleryEl.appendChild(img);
+        img.alt = `${name} image`;
+        imageGallery.appendChild(img);
       });
     }
 
-    const toggleBtn = document.getElementById("toggleFormBtn");
-    const formContainer = document.getElementById("formContainer");
-    toggleBtn.addEventListener("click", () => {
-      formContainer.classList.toggle("collapsed");
-      toggleBtn.textContent = formContainer.classList.contains("collapsed")
-        ? "Show Contact / Subscribe Form"
-        : "Hide Contact / Subscribe Form";
+    // Toggle the visibility of the contact form
+    toggleFormBtn.addEventListener("click", () => {
+      if (formContainer.style.display === "block") {
+        formContainer.style.display = "none";
+        toggleFormBtn.textContent = "Show Contact / Subscribe Form";
+      } else {
+        formContainer.style.display = "block";
+        toggleFormBtn.textContent = "Hide Contact / Subscribe Form";
+      }
     });
 
-    const form = document.getElementById("subscriptionForm");
-    const formResponse = document.getElementById("formResponse");
-    form.addEventListener("submit", e => {
+    // Handle form submission with EmailJS
+    subscriptionForm.addEventListener("submit", function (e) {
       e.preventDefault();
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-      const formData = new FormData(form);
-      const data = {
-        from_name: formData.get("name"),
-        reply_to: formData.get("email"),
-        message: formData.get("message"),
-        service: document.getElementById("serviceTitle").textContent
+      formResponse.style.color = "black";
+      formResponse.textContent = "Sending...";
+
+      const formData = {
+        name: subscriptionForm.name.value,
+        email: subscriptionForm.email.value,
+        message: subscriptionForm.message.value,
+        service: currentService
       };
-      emailjs.send("service_xjqgy6v", "template_2czkfis", data)
+
+      // Replace 'service_54vzx7a' and 'template_1uyry3c' with your EmailJS service and template IDs
+      emailjs.send("service_xjqgy6v", "template_2bql6hb", formData)
         .then(() => {
-          formResponse.style.color = "#27ae60";
-          formResponse.textContent = "Message sent successfully! Thank you.";
-          form.reset();
+          formResponse.style.color = "green";
+          formResponse.textContent = "Message sent successfully!";
+          subscriptionForm.reset();
         })
-        .catch(() => {
-          formResponse.style.color = "#e74c3c";
-          formResponse.textContent = "Oops, something went wrong. Please try again.";
+        .catch((error) => {
+          formResponse.style.color = "red";
+          formResponse.textContent = "Failed to send message. Please try again.";
+          console.error("EmailJS error:", error);
         });
     });
 
-    // Initialize on page load
-    document.addEventListener("DOMContentLoaded", () => {
-      const serviceName = getServiceFromURL();
-      populateServiceDetails(serviceName);
-    });
+    // Load default service data on page load
+    loadService(currentService);
   </script>
 </body>
 </html>
