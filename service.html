@@ -1,75 +1,486 @@
-<!-- Example service detail page template -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Service Details</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #2c3e50;
+      --secondary: #3498db;
+      --accent: #27ae60;
+      --bg: #f5f7fa;
+      --light: #ecf0f1;
+      --text: #34495e;
+    }
+
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Inter', sans-serif;
       margin: 0;
-      padding: 2em;
-      background: #f4f4f4;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
     }
-    .content {
-      background: white;
-      padding: 2em;
-      border-radius: 10px;
-      max-width: 800px;
+
+    .container {
+      max-width: 1200px;
       margin: auto;
-      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-      animation: fadeIn 1s ease;
+      padding: 2rem;
     }
-    h1 { color: #2c3e50; }
-    p { line-height: 1.6; }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    header.site-header {
+      background: var(--primary);
+      color: #fff;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav.nav a {
+      color: #ecf0f1;
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav.nav a:hover {
+      color: var(--accent);
+    }
+
+    h1#serviceTitle {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-top: 1rem;
+    }
+
+    h2, h3 {
+      color: var(--primary);
+      margin-top: 2rem;
+    }
+
+    p, ul {
+      font-size: 1rem;
+    }
+
+    #howWeHelpSection {
+      background: var(--light);
+      padding: 1rem;
+      border-left: 4px solid var(--secondary);
+      border-radius: 8px;
+    }
+
+    ul#skillsList {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    ul#skillsList li {
+      background: var(--secondary);
+      color: #fff;
+      padding: 0.4rem 0.8rem;
+      border-radius: 5px;
+      font-size: 0.9rem;
+    }
+
+    #imageGallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    #imageGallery img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    #imageGallery img:hover {
+      transform: scale(1.03);
+    }
+
+    #toggleFormBtn {
+      background: var(--secondary);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      margin-top: 2rem;
+      cursor: pointer;
+    }
+
+    #formContainer {
+      display: none;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin-top: 1rem;
+    }
+
+    #subscriptionForm input,
+    #subscriptionForm textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    #subscriptionForm button {
+      background: var(--accent);
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border: none;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #subscriptionForm button:hover {
+      background: #219150;
+    }
+
+    .site-footer {
+      background: var(--primary);
+      color: #ecf0f1;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav.nav a {
+        display: block;
+        margin: 0.5rem 0;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="content" id="serviceDetail">
-    <h1>Loading...</h1>
-    <p>Please wait while we load the service details.</p>
-  </div>
+  <header class="site-header">
+    <div class="container header-container">
+      <nav class="nav">
+        <a href="#">Home</a>
+        <a href="#">Services</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </header>
 
+  <main class="container">
+    <h1 id="serviceTitle">Service Title</h1>
+    <section id="service-info">
+      <h2>Description</h2>
+      <p id="serviceDescription">Loading service description...</p>
+
+      <h3>How We Can Help You</h3>
+      <p id="howWeHelpSection">Loading how we help text...</p>
+
+      <h3>Our Expertise</h3>
+      <ul id="skillsList"></ul>
+
+      <h3>Gallery</h3>
+      <div id="imageGallery"></div>
+    </section>
+
+    <button id="toggleFormBtn">Show Contact / Subscribe Form</button>
+    <div id="formContainer">
+      <form id="subscriptionForm">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+
+        <button type="submit">Send Message</button>
+        <p id="formResponse"></p>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 MyService. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
-    const serviceDescriptions = {
-      "Web Design": "Professional web design tailored to your brand, optimized for performance and aesthetics. Essential for making a strong online presence.",
-      "App Development": "Build powerful and scalable mobile or desktop apps. Stay connected with your audience through seamless experiences.",
-      "SEO Optimization": "Improve your website's visibility in search engines and attract more organic traffic with expert SEO strategies.",
-      "Tech Support": "Reliable tech support to resolve any issues promptly. Peace of mind for you and your clients.",
-      "E-commerce Integration": "Boost sales by adding a full-featured online store to your website with secure payment systems.",
-      "Social Media Management": "Grow your audience and engagement with smart scheduling, analytics, and content creation.",
-      "Email Marketing": "Increase conversions through compelling and targeted email campaigns tailored to your audience.",
-      "UI/UX Design": "Craft user experiences that are both intuitive and delightful. User satisfaction starts here.",
-      "Cloud Solutions": "Store and access data securely with scalable and flexible cloud technology.",
-      "Cybersecurity Services": "Protect your digital assets with top-notch security services including audits, firewalls, and more.",
-      "Custom Software": "Get tailor-made software solutions that solve your specific business challenges.",
-      "System Maintenance": "Ensure your systems run smoothly with regular updates and monitoring.",
-      "Data Analytics": "Make informed decisions through powerful data insights and predictive analytics.",
-      "Automation Solutions": "Streamline operations and reduce manual work with intelligent automation tools.",
-      "Content Creation": "Engaging content that resonates with your audience, crafted to boost traffic and interest."
+    emailjs.init("9gydduA26qP4Do9xm");
+
+    const serviceData = {
+      "Web Design": {
+        description: "Professional web design services crafting visually stunning, responsive websites tailored to your brand identity, ensuring a seamless user experience across all devices.",
+        howWeHelp: "We collaborate with you to understand your brand vision and target audience. Our team designs beautiful and intuitive websites that help attract and retain visitors, making a strong impression and driving conversions.",
+        skills: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "Adobe Photoshop", "Figma", "UX Principles"],
+        images: [
+          "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80"
+        ]
+      },
+      "App Development": {
+        description: "Custom mobile and web app development solutions built for performance, scalability, and user engagement, using modern frameworks and agile methodologies.",
+        howWeHelp: "We turn your ideas into feature-rich, user-friendly applications. From MVP to full-scale deployment, we ensure your app performs seamlessly and delivers real value to your users.",
+        skills: ["React Native", "Flutter", "Swift", "Kotlin", "API Integration", "Agile Development", "UI/UX Design"],
+        images: [
+          "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=600&q=80"
+        ]
+      },
+      "SEO Optimization": {
+        description: "Boost your online presence with our comprehensive SEO optimization strategies, including keyword research, on-page SEO, link building, and performance analytics.",
+        howWeHelp: "We analyze your site and industry to develop a tailored SEO strategy that improves your search rankings, drives organic traffic, and increases visibility among your target customers.",
+        skills: ["Keyword Research", "Google Analytics", "On-page SEO", "Content Strategy", "Link Building", "Technical SEO"],
+        images: [
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmWRO4U7ftrahsNL8dWr7n8dA2igsjCASP4g&s",
+          "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80"
+        ]
+      },
+      "Tech Support": {
+        description: "Reliable tech support to troubleshoot, maintain, and optimize your IT infrastructure, ensuring minimal downtime and smooth daily operations.",
+        howWeHelp: "Our certified technicians provide prompt assistance to resolve hardware and software issues, configure networks securely, and implement best practices to keep your systems running smoothly.",
+        skills: ["Hardware Repair", "Software Troubleshooting", "Network Configuration", "Remote Support", "Security Best Practices"],
+        images: [
+          "https://resourcecenter.infinit-o.com/wp-content/uploads/2023/12/woman-working-as-a-technical-support-min.jpg",
+          "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&w=600&q=80",
+          "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&w=600&q=80"
+        ]
+      },
+      "E-commerce Integration": {
+        description: "Seamless e-commerce platform integration to enable secure payment gateways, product catalogs, and enhanced user shopping experience.",
+        howWeHelp: "We integrate and customize e-commerce solutions that streamline product management, secure transactions, and deliver a smooth shopping experience that boosts sales and customer loyalty.",
+        skills: ["Shopify", "WooCommerce", "Payment Gateways", "Inventory Management", "Security", "UI/UX"],
+        images: [
+          "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&w=600&q=80",
+          "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&w=600&q=80",
+          "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&w=600&q=80"
+        ]
+      },
+      "Social Media Management": {
+        description: "Effective social media campaign management to build brand awareness, engage your audience, and increase conversions across platforms.",
+        howWeHelp: "Our strategists craft engaging content calendars, manage community interactions, and run targeted ad campaigns that grow your following and drive measurable results.",
+        skills: ["Content Creation", "Community Management", "Analytics", "Paid Ads", "Brand Strategy"],
+        images: [
+          "https://bigfielddigital.com/wp-content/uploads/2022/03/free-social-media-management-tools.jpg",
+          "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&w=600&q=80",
+          "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&w=600&q=80"
+        ]
+      },
+      "Email Marketing": {
+        description: "Targeted email marketing campaigns designed to nurture leads, increase customer retention, and drive sales through personalized content.",
+        howWeHelp: "We design and execute email campaigns that speak directly to your audience’s needs, using segmentation and A/B testing to optimize open rates and conversions.",
+        skills: ["Mailchimp", "Campaign Design", "Segmentation", "A/B Testing", "Analytics"],
+        images: [
+          "https://blog.blendee.com/wp-content/uploads/2024/11/email-marketing.jpg",
+          "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&w=600&q=80",
+          "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&w=600&q=80"
+        ]
+      },
+      "UI/UX Design": {
+        description: "User interface and experience design focused on creating intuitive, accessible, and attractive digital products that delight users.",
+        howWeHelp: "Through user research, wireframes, and prototypes, we craft interfaces that are both beautiful and usable, ensuring every interaction feels natural and intuitive.",
+        skills: ["Wireframing", "Prototyping", "User Testing", "Figma", "Adobe XD", "Accessibility"],
+        images: [
+          "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&w=600&q=80",
+          "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&w=600&q=80",
+          "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&w=600&q=80"
+        ]
+      },
+      "Cloud Solutions": {
+        description: "Secure and scalable cloud computing solutions including migration, management, and optimization for various business needs.",
+        howWeHelp: "We plan, migrate, and manage your cloud infrastructure, leveraging best practices and automation to reduce costs, improve reliability, and accelerate innovation.",
+        skills: ["AWS", "Azure", "Google Cloud", "Docker", "Kubernetes", "DevOps"],
+        images: [
+          "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&w=600&q=80",
+          "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&w=600&q=80",
+          "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&w=600&q=80"
+        ]
+      },
+      "Cybersecurity Services": {
+        description: "Protect your business from cyber threats with advanced security audits, penetration testing, and continuous monitoring.",
+        howWeHelp: "Our experts conduct thorough security assessments, implement robust defenses, and monitor your environment 24/7 to detect and respond to threats swiftly.",
+        skills: ["Penetration Testing", "Firewall Setup", "Risk Assessment", "Encryption", "Incident Response"],
+        images: [
+          "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&w=600&q=80",
+          "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&w=600&q=80",
+          "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&w=600&q=80"
+        ]
+      },
+      "Custom Software": {
+        description: "Tailor-made software solutions crafted to solve your unique business challenges and improve operational efficiency.",
+        howWeHelp: "From requirements gathering to deployment, we develop robust software that integrates seamlessly with your workflows and scales as your business grows.",
+        skills: ["C#", "Java", "Python", "Agile", "Microservices", "API Development"],
+        images: [
+          "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&w=600&q=80",
+          "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&w=600&q=80",
+          "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&w=600&q=80"
+        ]
+      },
+      "System Maintenance": {
+        description: "Comprehensive system maintenance services to keep your infrastructure secure, updated, and running at peak performance.",
+        howWeHelp: "We schedule regular updates, backups, and performance tuning to prevent issues before they arise, ensuring your systems remain reliable and efficient.",
+        skills: ["System Updates", "Backup & Recovery", "Performance Tuning", "Monitoring", "Troubleshooting"],
+        images: [
+          "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&w=600&q=80",
+          "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&w=600&q=80",
+          "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&w=600&q=80"
+        ]
+      },
+      "Data Analytics": {
+        description: "Insightful data analytics services providing actionable intelligence to help drive smart business decisions.",
+        howWeHelp: "We collect and analyze your data to uncover trends, generate reports, and build dashboards that help you make informed, data-driven decisions.",
+        skills: ["Data Visualization", "SQL", "Python", "R", "Machine Learning", "Dashboarding"],
+        images: [
+          "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&w=600&q=80",
+          "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&w=600&q=80",
+          "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&w=600&q=80"
+        ]
+      },
+"Automation Solutions": {
+  "description": "Streamline your business operations with tailored automation services that save time, reduce errors, and boost productivity.",
+  "howWeHelp": "We analyze your workflows and implement automated systems—ranging from data entry to complex decision-making processes—helping you scale operations while reducing manual effort.",
+  "skills": [
+    "Workflow Automation",
+    "RPA (Robotic Process Automation)",
+    "Integration with APIs",
+    "Custom Scripts & Bots",
+    "Data Synchronization"
+  ],
+  "images": [
+    "https://zd-brightspot.s3.us-east-1.amazonaws.com/wp-content/uploads/2024/02/26091442/Shutterstock_1133982038.jpg",
+    "https://www.luminatech.co.uk/wp-content/uploads/2021/04/shutterstock_713413354-1.jpg",
+    "https://media.geeksforgeeks.org/wp-content/uploads/20240916120140/Types-of-automation.webp"
+  ]
+},
+"Content Creation": {
+  "description": "Engage your audience with professionally crafted content tailored to your brand's voice and goals across all digital platforms.",
+  "howWeHelp": "We create compelling copy, visuals, and multimedia content that resonates with your target audience—driving traffic, engagement, and conversions.",
+  "skills": [
+    "Copywriting",
+    "Graphic Design",
+    "Video Production",
+    "Content Strategy",
+    "Social Media Campaigns"
+  ],
+  "images": [
+    "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&w=600&q=80",
+    "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&w=600&q=80",
+    "https://cdn.guardian.ng/wp-content/uploads/2025/03/content-creation.jpeg"
+  ]
+}
+
     };
 
-    const params = new URLSearchParams(window.location.search);
-    const serviceName = params.get("name");
-
-    const contentDiv = document.getElementById("serviceDetail");
-
-    if (serviceDescriptions[serviceName]) {
-      contentDiv.innerHTML = `
-        <h1>${serviceName}</h1>
-        <p>${serviceDescriptions[serviceName]}</p>
-      `;
-    } else {
-      contentDiv.innerHTML = `
-        <h1>Service Not Found</h1>
-        <p>We couldn't find details for the requested service.</p>
-      `;
+    function getServiceFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("service") || "";
     }
+
+    function populateServiceDetails(serviceName) {
+      const data = serviceData[serviceName];
+      const titleEl = document.getElementById("serviceTitle");
+      const descEl = document.getElementById("serviceDescription");
+      const helpEl = document.getElementById("howWeHelpSection");
+      const skillsEl = document.getElementById("skillsList");
+      const galleryEl = document.getElementById("imageGallery");
+
+      if (!data) {
+        titleEl.textContent = "Service Not Found";
+        descEl.textContent = "Sorry, we don't have details for this service.";
+        helpEl.textContent = "";
+        skillsEl.innerHTML = "";
+        galleryEl.innerHTML = "";
+        return;
+      }
+
+      titleEl.textContent = serviceName;
+      descEl.textContent = data.description;
+      helpEl.textContent = data.howWeHelp;
+
+      skillsEl.innerHTML = "";
+      data.skills.forEach(skill => {
+        const li = document.createElement("li");
+        li.textContent = skill;
+        skillsEl.appendChild(li);
+      });
+
+      galleryEl.innerHTML = "";
+      data.images.forEach(src => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = `${serviceName} related image`;
+        galleryEl.appendChild(img);
+      });
+    }
+
+    const toggleBtn = document.getElementById("toggleFormBtn");
+    const formContainer = document.getElementById("formContainer");
+    toggleBtn.addEventListener("click", () => {
+      formContainer.classList.toggle("collapsed");
+      toggleBtn.textContent = formContainer.classList.contains("collapsed")
+        ? "Show Contact / Subscribe Form"
+        : "Hide Contact / Subscribe Form";
+    });
+
+    const form = document.getElementById("subscriptionForm");
+    const formResponse = document.getElementById("formResponse");
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const formData = new FormData(form);
+      const data = {
+        from_name: formData.get("name"),
+        reply_to: formData.get("email"),
+        message: formData.get("message"),
+        service: document.getElementById("serviceTitle").textContent
+      };
+      emailjs.send("service_xjqgy6v", "template_2czkfis", data)
+        .then(() => {
+          formResponse.style.color = "#27ae60";
+          formResponse.textContent = "Message sent successfully! Thank you.";
+          form.reset();
+        })
+        .catch(() => {
+          formResponse.style.color = "#e74c3c";
+          formResponse.textContent = "Oops, something went wrong. Please try again.";
+        });
+    });
+
+    // Initialize on page load
+    document.addEventListener("DOMContentLoaded", () => {
+      const serviceName = getServiceFromURL();
+      populateServiceDetails(serviceName);
+    });
   </script>
 </body>
 </html>
